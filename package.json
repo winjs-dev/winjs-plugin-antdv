@@ -17,6 +17,7 @@
     "typescript"
   ],
   "version": "1.0.1",
+  "packageManager": "pnpm@10.10.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/winjs-dev/winjs-plugin-antdv.git"
