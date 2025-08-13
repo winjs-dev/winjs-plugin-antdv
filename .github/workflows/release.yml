@@ -94,7 +94,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 发布到 npm
-        run: pnpm publish --no-git-checks
+        run: npm i -g npm && pnpm publish --no-git-checks
 
 
       - name: 创建 GitHub Release
