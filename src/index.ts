@@ -10,8 +10,8 @@ function resolveProjectDep(opts: { pkg: any; cwd: string; dep: string }) {
   ) {
     return dirname(
       resolve.sync(`${opts.dep}/package.json`, {
-        basedir: opts.cwd
-      })
+        basedir: opts.cwd,
+      }),
     );
   }
 }
@@ -23,18 +23,18 @@ export default (api: IApi) => {
       resolveProjectDep({
         pkg: api.pkg,
         cwd: api.cwd,
-        dep: 'ant-design-vue'
+        dep: 'ant-design-vue',
       }) || dirname(require.resolve('ant-design-vue/package.json'));
   } catch (e) {
     throw new Error(
-      `Can't find ant-design-vue package. Please install antd first.`
+      `Can't find ant-design-vue package. Please install antd first.`,
     );
   }
 
   function checkPkgPath() {
     if (!pkgPath) {
       throw new Error(
-        `Can't find ant-design-vue package. Please install antd first.`
+        `Can't find ant-design-vue package. Please install antd first.`,
       );
     }
   }
@@ -46,7 +46,7 @@ export default (api: IApi) => {
     checkPkgPath();
     memo.antdv = {
       pkgPath,
-      version: antdvVersion
+      version: antdvVersion,
     };
     return memo;
   });
@@ -56,24 +56,24 @@ export default (api: IApi) => {
     config: {
       schema({ zod }) {
         return zod.object({});
-      }
+      },
     },
-    enableBy: api.EnableBy.config
+    enableBy: api.EnableBy.config,
   });
 
   const unComponents = {
     resolvers: [
       AntDesignVueResolver({
         // vue2 为 true
-        importStyle: isAntdv2
-      })
-    ]
+        importStyle: isAntdv2,
+      }),
+    ],
   };
 
   api.userConfig.autoImport = deepmerge(
     {
-      unComponents
+      unComponents,
     },
-    api.userConfig.autoImport || {}
+    api.userConfig.autoImport || {},
   );
 };
