@@ -1,20 +1,25 @@
 {
-  "name": "winjs-plugin-template",
+  "name": "@winner-fed/plugin-antdv",
   "keywords": [
     "winjs",
     "plugin",
-    "template",
+    "vue",
+    "antd",
+    "ant-design-vue",
+    "components",
+    "auto-import",
+    "ui-library",
+    "resolver",
     "winner-fed",
     "winjs-dev",
     "rslib",
     "rsbuild",
-    "typescript",
-    "biome"
+    "typescript"
   ],
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/winjs-dev/winjs-plugin-template.git"
+    "url": "git+https://github.com/winjs-dev/winjs-plugin-antdv.git"
   },
   "license": "MIT",
   "type": "module",
@@ -52,13 +57,16 @@
     "@winner-fed/winjs": "*",
     "playwright": "^1.53.2",
     "simple-git-hooks": "^2.13.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "unplugin-vue-components": "28.4.1"
   },
   "peerDevDependencies": {
-    "@winner-fed/winjs": "*"
+    "@winner-fed/winjs": "*",
+    "unplugin-vue-components": "28.4.1"
   },
   "peerDependencies": {
-    "@winner-fed/utils": "*"
+    "@winner-fed/utils": "*",
+    "ant-design-vue": "^4.0.0"
   },
   "peerDependenciesMeta": {
     "@rsbuild/core": {

@@ -88,26 +88,14 @@ jobs:
 
       - name: 生成变更日志
         id: changelog
-        run: |
-          # 获取上一个标签
-          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
-          
-          if [ -z "$PREV_TAG" ]; then
-            # 如果没有上一个标签，获取所有提交
-            CHANGELOG=$(git log --pretty=format:"- %s (%h)" --no-merges)
-          else
-            # 获取两个标签之间的提交
-            CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
-          fi
-          
-          # 保存到文件以避免特殊字符问题
-          echo "$CHANGELOG" > changelog.txt
-          echo "changelog_file=changelog.txt" >> $GITHUB_OUTPUT
+        run: npx changelogithub
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 发布到 npm
         run: pnpm publish --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 
       - name: 创建 GitHub Release
         uses: actions/create-release@v1
@@ -125,4 +113,4 @@ jobs:
           echo "🎉 发布成功!"
           echo "📦 版本: ${{ steps.get_version.outputs.version }}"
           echo "🏷️ 标签: ${{ steps.get_version.outputs.tag_name }}"
-          echo "📝 npm: https://www.npmjs.com/package/winjs-plugin-template"
+          echo "📝 npm: https://www.npmjs.com/package/@winner-fed/plugin-antdv"
