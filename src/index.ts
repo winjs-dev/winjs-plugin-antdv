@@ -179,7 +179,7 @@ export default (api: IApi) => {
   });
 
   // 获取用户配置，如果没有配置则使用默认值
-  const userConfig = api.config.antdv || {};
+  const userConfig = api.userConfig.antdv || {};
   const resolverConfig = {
     // 排除的组件列表：默认为空数组
     ...(userConfig.exclude &&
