@@ -47,33 +47,6 @@ jobs:
           echo "Package name: $(node -p "require('./package.json').name")"
           echo "Package version: $(node -p "require('./package.json').version")"
 
-      - name: Debug npm config
-        run: |
-          echo "=== npm 配置信息 ==="
-          npm config list
-          echo ""
-          echo "=== 环境变量检查 ==="
-          echo "NODE_AUTH_TOKEN exists: $([ -n "$NODE_AUTH_TOKEN" ] && echo 'yes' || echo 'no')"
-          echo "NPM_TOKEN exists: $([ -n "$NPM_TOKEN" ] && echo 'yes' || echo 'no')"
-          echo ""
-          echo "=== npm 版本信息 ==="
-          npm --version
-          echo ""
-          echo "=== 检查 .npmrc 文件 ==="
-          cat ~/.npmrc 2>/dev/null || echo "未找到 .npmrc 文件"
-          echo ""
-          echo "=== 检查 npm 认证状态 ==="
-          npm whoami || echo "未认证或认证失败"
-          echo ""
-          echo "=== 检查作用域配置 ==="
-          npm config get @winner-fed:registry || echo "未找到作用域配置"
-          echo ""
-          echo "=== 检查认证 token 格式 ==="
-          if [ -n "$NODE_AUTH_TOKEN" ]; then
-            echo "Token 长度: ${#NODE_AUTH_TOKEN}"
-            echo "Token 前缀: ${NODE_AUTH_TOKEN:0:20}..."
-          fi
-
       - name: Publish to npm
         run: npm publish --access public --provenance
 
