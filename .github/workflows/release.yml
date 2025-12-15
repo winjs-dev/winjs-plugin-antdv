@@ -30,6 +30,8 @@ jobs:
         with:
           node-version: 22.20.0
           registry-url: 'https://registry.npmjs.org'
+          scope: '@winner-fed'
+          always-auth: true
 
       - name: Update npm to latest
         run: npm install -g npm@latest
